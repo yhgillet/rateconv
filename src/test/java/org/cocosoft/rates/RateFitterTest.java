@@ -23,9 +23,10 @@ class RateFitterTest {
         System.out.println(bfRate);
         System.out.println(result);
 
-        Assertions.assertEquals(BigDecimal.valueOf(1.33), round(result.getRcRate()));
-        Assertions.assertEquals(BigDecimal.valueOf(0.73), round(result.getRate()));
-        Assertions.assertEquals(BigDecimal.valueOf(0.48), round(result.getRcCurve()));
+        Assertions.assertEquals(1.34D, result.getRcRate(),0.01);
+        Assertions.assertEquals(0.73D, result.getRate(), 0.01);
+        Assertions.assertEquals(0.49D, result.getRcCurve(), 0.01);
+
     }
 
     @Test
@@ -36,9 +37,9 @@ class RateFitterTest {
         System.out.println(bfRate);
         System.out.println(result);
 
-        Assertions.assertEquals(BigDecimal.valueOf(356.57), round(result.getRate()));
-        Assertions.assertEquals(BigDecimal.valueOf(0.75), round(result.getExpo()));
-        Assertions.assertEquals(BigDecimal.valueOf(0.45), round(result.getAcrop()));
+        Assertions.assertEquals(348, result.getRate(),1);
+        Assertions.assertEquals(67, result.getExpo(),1);
+        Assertions.assertEquals(175, result.getAcrop(),1);
     }
 
     @Test
@@ -48,10 +49,10 @@ class RateFitterTest {
 
         System.out.println(kissRate);
         System.out.println(result);
+        Assertions.assertEquals(2.1, result.getRcRate(),0.01);
+        Assertions.assertEquals(0.25, result.getSuperRate(),0.01);
+        Assertions.assertEquals(0.65, result.getExpo(),0.01);
 
-        Assertions.assertEquals(new BigDecimal("2.10"), round(result.getRcRate()));
-        Assertions.assertEquals(new BigDecimal("0.25"), round(result.getSuperRate()));
-        Assertions.assertEquals(new BigDecimal("0.65"), round(result.getExpo()));
     }
 
 }
