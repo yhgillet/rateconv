@@ -53,11 +53,11 @@ public class KissRate implements Rate {
 
     @Override
     public String toString() {
-        return "Kiss{" +
-                "rcRate=" + BigDecimal.valueOf(rcRate).setScale(2, RoundingMode.HALF_UP) +
-                ", rate=" + BigDecimal.valueOf(rate).setScale(2, RoundingMode.HALF_UP) +
-                ", rcCurve=" + BigDecimal.valueOf(rcCurve).setScale(2, RoundingMode.HALF_UP) +
-                ", max deg/s=" + BigDecimal.valueOf(calc(1.0)).setScale(2, RoundingMode.HALF_UP) +
+        return "{type: 'ki'," +
+                "rcRate:" + BigDecimal.valueOf(rcRate).setScale(2, RoundingMode.HALF_UP) +
+                ", rate:" + BigDecimal.valueOf(rate).setScale(2, RoundingMode.HALF_UP) +
+                ", rcCurve:" + BigDecimal.valueOf(rcCurve).setScale(2, RoundingMode.HALF_UP) +
+                ", max:" + BigDecimal.valueOf(calc(1.0)).setScale(2, RoundingMode.HALF_UP) +
                 '}';
     }
 }

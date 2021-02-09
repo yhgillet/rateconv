@@ -44,11 +44,11 @@ public class RaceFlightRate implements Rate {
 
     @Override
     public String toString() {
-        return "RaceFlight{" +
-                "rate=" + BigDecimal.valueOf(rate).setScale(1, RoundingMode.HALF_UP) +
-                ", expo=" + BigDecimal.valueOf(expo).setScale(1, RoundingMode.HALF_UP) +
-                ", acrop=" + BigDecimal.valueOf(acrop).setScale(1, RoundingMode.HALF_UP) +
-                ", max deg/s=" + BigDecimal.valueOf(calc(1.0)).setScale(3, RoundingMode.HALF_UP) +
+        return "{type: 'rf', " +
+                "rate: " + BigDecimal.valueOf(rate).setScale(1, RoundingMode.HALF_UP) +
+                ", expo: " + BigDecimal.valueOf(expo).setScale(1, RoundingMode.HALF_UP) +
+                ", acrop: " + BigDecimal.valueOf(acrop).setScale(1, RoundingMode.HALF_UP) +
+                ", max: " + BigDecimal.valueOf(calc(1.0)).setScale(3, RoundingMode.HALF_UP) +
                 '}';
     }
 }

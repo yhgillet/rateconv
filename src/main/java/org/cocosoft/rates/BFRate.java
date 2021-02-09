@@ -74,11 +74,11 @@ public class BFRate implements Rate {
 
     @Override
     public String toString() {
-        return "BF{" +
-                "rcRate=" + BigDecimal.valueOf(rcRate).setScale(2, RoundingMode.HALF_UP) +
-                ", superRate=" + BigDecimal.valueOf(superRate).setScale(2, RoundingMode.HALF_UP) +
-                ", expo=" + BigDecimal.valueOf(expo).setScale(2, RoundingMode.HALF_UP) +
-                ", max deg/s=" + BigDecimal.valueOf(calc(1.0)).setScale(3, RoundingMode.HALF_UP) +
+        return "{type: 'bf'," +
+                "rcRate: " + BigDecimal.valueOf(rcRate).setScale(2, RoundingMode.HALF_UP) +
+                ", superRate: " + BigDecimal.valueOf(superRate).setScale(2, RoundingMode.HALF_UP) +
+                ", expo: " + BigDecimal.valueOf(expo).setScale(2, RoundingMode.HALF_UP) +
+                ", max: " + BigDecimal.valueOf(calc(1.0)).setScale(3, RoundingMode.HALF_UP) +
                 '}';
     }
 }

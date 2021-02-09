@@ -17,23 +17,22 @@ import java.util.List;
 
 public class RateFitter {
 
+
+
     private List<WeightedObservedPoint> getSampleData(Rate source) {
         WeightedObservedPoints points = new WeightedObservedPoints();
 
         for (int i = 0; i < 100; i++) {
             double command = 0.01 * (i + 1);
             double output = source.calc(command);
-            //double weight = 1;
-            //double weight = 2 - Math.pow(1 - 2 * command, 2);
-            double weight = 2 - Math.pow(1 -  command/2, 2);
-
+            double weight = 1;
             points.add(weight, command, output);
         }
         return points.toList();
 
     }
 
-    public <T extends Rate> T fit(ParametricUnivariateFunction function, Rate sourceRate, T targetRate) {
+    public <T extends Rate> RateResult<T> fit(ParametricUnivariateFunction function, Rate sourceRate, T targetRate) {
         List<WeightedObservedPoint> data = getSampleData(sourceRate);
 
         final double[] target = new double[data.size()];
@@ -49,6 +48,8 @@ public class RateFitter {
 
         ConvergenceChecker<LeastSquaresProblem.Evaluation> checker = new EvaluationRmsChecker(10e-4);
 
+        ParameterValidator validator = new RateValidator(targetRate);
+
         LeastSquaresProblem problem = new LeastSquaresBuilder().
                 maxIterations(1_000_000).
                 maxEvaluations(10000).
@@ -56,6 +57,7 @@ public class RateFitter {
                 target(target).
                 weight(new DiagonalMatrix(weights)).
                 checker(checker).
+                parameterValidator(validator).
                 model(model.getModelFunction(), model.getModelFunctionJacobian()).
                 build();
 
@@ -67,12 +69,11 @@ public class RateFitter {
 
         targetRate.init(result[0], result[1], result[2]);
 
-        System.out.println("Fit score is " + eval(sourceRate, targetRate));
-        return targetRate;
+        return new RateResult<>(targetRate, eval(sourceRate, targetRate));
     }
 
 
-    public <T extends Rate> T convert(Rate originRate, T targetRate) {
+    public <T extends Rate> RateResult<T> convert(Rate originRate, T targetRate) {
         if (originRate.getClass() == targetRate.getClass()) {
             throw new IllegalArgumentException("same origin and target ");
         }
@@ -91,7 +92,6 @@ public class RateFitter {
         return fit(transformFunction, originRate, targetRate);
 
     }
-
 
     private double eval(Rate origin, Rate target) {
         double diff = 0;
