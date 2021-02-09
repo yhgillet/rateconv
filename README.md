@@ -5,7 +5,7 @@ Convert rates from and to other. Supports  RaceFlight, BetaFlight, and KISS.
 You will need java installed.
 
 ```
-java rateconv-<VERSION>.jar <type> <param1> <param2> <param3>
+java -jar rateconv-<VERSION>.jar <type> <param1> <param2> <param3>
 
 Where: <type> in [bf,ki,rf] and <paramX> are the rate parameters
 bf: <rc_rate> <super_rate> <rc_expo>
