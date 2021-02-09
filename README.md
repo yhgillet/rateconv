@@ -12,3 +12,6 @@ bf: <rc_rate> <super_rate> <rc_expo>
 ki: <rc_rate> <rate> <rc_curve>
 rf: <rate> <expo> <acro_plus>
 ```
+
+## Visualize rates
+You can use this tool to play with rates: [https://apocolipse.github.io/RotorPirates/]
