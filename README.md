@@ -1,7 +1,7 @@
 # rateconv
 Convert rates from and to other. Supports  RaceFlight, BetaFlight, and KISS.
 
-##usage
+## usage
 You will need java installed.
 
 ```
