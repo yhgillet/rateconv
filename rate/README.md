@@ -1,7 +1,9 @@
 # rateconv
+
 Library for conversion
 
 ## Usage
+
 You can use it as a routine, you will need java installed for that.
 
 ```
@@ -14,4 +16,5 @@ rf: <rate> <expo> <acro_plus>
 ```
 
 ## Visualize rates
+
 You can use this tool to play with rates: [https://apocolipse.github.io/RotorPirates/]
