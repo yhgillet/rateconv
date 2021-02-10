@@ -3,25 +3,25 @@ package org.cocosoft.rateconv.rate.fitter;
 
 import org.cocosoft.rateconv.rate.Rate;
 
-public class RateResult {
-  private Rate rate;
-  private double fitScore;
+public class RateResult<T extends Rate> {
+  private T rate;
+  private double score;
 
-  public RateResult(Rate rate, double fitScore) {
+  public RateResult(T rate, double score) {
     this.rate = rate;
-    this.fitScore = fitScore;
+    this.score = score;
   }
 
-  public Rate getRate() {
+  public T getRate() {
     return rate;
   }
 
-  public double getFitScore() {
-    return fitScore;
+  public double getScore() {
+    return score;
   }
 
   @Override
   public String toString() {
-    return "{result: " + rate + ", fit:" + fitScore + "}";
+    return "{result: " + rate + ", fit:" + score + "}";
   }
 }

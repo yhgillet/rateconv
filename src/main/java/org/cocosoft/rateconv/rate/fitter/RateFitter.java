@@ -41,7 +41,7 @@ public class RateFitter {
 
     final double[] target = new double[data.size()];
     final double[] weights = new double[data.size()];
-    double[] initialGuess = targetRate.getParams();
+    double[] initialGuess = targetRate.params();
 
     for (int i = 0; i < target.length; i++) {
       target[i] = data.get(i).getY();

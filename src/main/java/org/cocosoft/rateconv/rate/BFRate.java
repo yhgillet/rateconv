@@ -3,6 +3,9 @@ package org.cocosoft.rateconv.rate;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
+
+@RegisterForReflection
 public class BFRate implements Rate {
 
   private Type type = Type.BF;
@@ -13,15 +16,14 @@ public class BFRate implements Rate {
   public BFRate(double rcRate, double superRate, double expo) {
     init(rcRate, superRate, expo);
   }
-
-
+  
   @Override
   public Type getType() {
     return type;
   }
 
   @Override
-  public double[] getParams() {
+  public double[] params() {
     return new double[] {rcRate, superRate, expo};
   }
 

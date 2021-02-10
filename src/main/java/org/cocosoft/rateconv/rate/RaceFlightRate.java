@@ -3,6 +3,9 @@ package org.cocosoft.rateconv.rate;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
+
+@RegisterForReflection
 public class RaceFlightRate implements Rate {
   private Type type = Type.RF;
   private double rate;
@@ -32,7 +35,7 @@ public class RaceFlightRate implements Rate {
 
 
   @Override
-  public double[] getParams() {
+  public double[] params() {
     return new double[] {rate, expo, acrop};
   }
 

@@ -3,6 +3,9 @@ package org.cocosoft.rateconv.rate;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
+
+@RegisterForReflection
 public class KissRate implements Rate {
   private Type type = Type.KISS;
 
@@ -22,7 +25,7 @@ public class KissRate implements Rate {
 
 
   @Override
-  public double[] getParams() {
+  public double[] params() {
     return new double[] {rcRate, rate, rcCurve};
   }
 

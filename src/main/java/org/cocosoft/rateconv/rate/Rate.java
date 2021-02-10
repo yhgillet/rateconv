@@ -2,9 +2,8 @@ package org.cocosoft.rateconv.rate;
 
 public interface Rate {
   Type getType();
-
-  //needed for resteasy
-  double[] getParams();
+  
+  double[] params();
 
   void init(double param1, double param2, double param3);
 
