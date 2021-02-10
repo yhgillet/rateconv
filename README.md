@@ -1,6 +1,8 @@
-# rateconv
+# Project
 
-Library for conversion
+Convert typical flight contollers rates. Supports RaceFlight, BetaFlight, and KISS conversions.
+
+You can use this cool tool to visualize the rates: https://apocolipse.github.io/RotorPirates/
 
 ## Usage
 
@@ -14,10 +16,6 @@ bf: <rc_rate> <super_rate> <rc_expo>
 ki: <rc_rate> <rate> <rc_curve>
 rf: <rate> <expo> <acro_plus>
 ```
-
-## Visualize rates
-
-You can use this tool to play with rates: [https://apocolipse.github.io/RotorPirates/]
 
 ## Development
 
