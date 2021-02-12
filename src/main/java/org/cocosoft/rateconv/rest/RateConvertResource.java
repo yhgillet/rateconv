@@ -34,7 +34,7 @@ public class RateConvertResource {
       throw new WebApplicationException("missing type", Response.Status.BAD_REQUEST);
     }
 
-    if (param1 <= 0 || param2 <= 0 || param3 <= 0) {
+    if (param1 < 0 || param2 < 0 || param3 < 0) {
       throw new WebApplicationException("bad params", Response.Status.BAD_REQUEST);
     }
 

@@ -30,6 +30,8 @@ Run `./mvnw quarkus:dev`
 
 Open browser to http://localhost:8080/
 
+You can use the quarkus dev console here http://localhost:8080/q/dev/
+
 ### Build native
 
 run `./mvnw package -Pnative -Dquarkus.native.container-build=true
