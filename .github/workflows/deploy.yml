@@ -30,4 +30,4 @@ jobs:
           aws-region: us-east-2
       - name: Deploy
         shell: bash
-        run: ./deploy.sh
+        run: ./src/deploy/deploy.sh
