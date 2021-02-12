@@ -23,12 +23,13 @@ var calcBf = function (rcCommand) {
         rcRate = rcRate + (14.54 * (rcRate - 2.0));
     }
     var a = (Math.pow(rcCommand, 4) * rates.bfExpo + rcCommand * (1.0 - rates.bfExpo));
-    return 200 * rcRate * a / (1 - rates.bfSuperRate * a);
+    return 200 * rcRate * a / (1 - rates.bfSuperRate * a)
 }
 
 var calcRf = function (rcCommand) {
-    var returnValue = (1 + 0.01 * rates.rfExpo * (rcCommand * rcCommand - 1.0)) * rcCommand
-    return returnValue * (rates.rfRate + (Math.abs(returnValue) * rates.rfRate * rates.rfAcro * 0.01))
+    var returnValue = ((1 + 0.01 * rates.rfExpo * (rcCommand * rcCommand - 1.0)) * rcCommand)
+    returnValue = (returnValue * (rates.rfRate + (Math.abs(returnValue) * rates.rfRate * rates.rfAcro * 0.01)))
+    return returnValue
 }
 
 google.charts.load('current', {'packages': ['corechart']});
@@ -51,7 +52,7 @@ function drawChart() {
     data.addRow([1, calcKiss(i), calcBf(i), calcRf(i)]);
 
     var options = {
-        // title: 'Rates',
+        title: 'Rates',
         curveType: 'function',
         legend: {position: 'bottom'}
     };
@@ -68,22 +69,19 @@ var changeValues = function (rateParams) {
 }
 
 var setupBinding = function (ids) {
-    var copyThenDraw = function (from, to, inputId, draw) {
+    var copyThenDraw = function (from, to, inputId) {
         return () => {
             to.value = from.value
-            rates[inputId] = from.value
+            rates[inputId] = parseFloat(from.value, 10)
             drawChart()
-
         }
     }
     ids.forEach(inputId => {
         var input = document.getElementById(inputId);
         var slider = document.getElementById(inputId + "Slider")
 
-        input.oninput = copyThenDraw(input, slider, inputId)
-        input.onchange = copyThenDraw(input, slider, inputId)
-        slider.onchange = copyThenDraw(slider, input, inputId)
-        slider.oninput = copyThenDraw(slider, input, inputId)
+        input.oninput = input.onchange = copyThenDraw(input, slider, inputId)
+        slider.onchange = slider.oninput = copyThenDraw(slider, input, inputId)
 
     })
 
