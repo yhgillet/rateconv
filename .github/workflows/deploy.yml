@@ -20,7 +20,7 @@ jobs:
         with:
           java-version: 1.11
       - name: Build native
-        run: ./mvnw package -Pnative -Dquarkus.native.container-build=true
+        run: ./mvnw package -Pnative
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
