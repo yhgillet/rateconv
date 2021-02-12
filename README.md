@@ -4,9 +4,14 @@ Convert typical flight contollers rates. Supports RaceFlight, BetaFlight, and KI
 
 Chek it here ! https://yhgillet.github.io/rateconv/
 
+This tool was highly inspired by https://github.com/apocolipse/RotorPirates (thanks !)
+
 ## Usage
 
-You can use it as a routine, you will need java installed for that.
+Use the online tool and if the conversion doesnt work, you can still use it as a routine, you will need java installed
+for that.
+
+Download the released jar `rateconv-<VERSION>.jar` then run
 
 ```
 java -jar rateconv-<VERSION>.jar <type> <param1> <param2> <param3>

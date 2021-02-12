@@ -12,12 +12,12 @@ var rates = {
     bfExpo: 0
 }
 
-var calcKiss = function (rcCommand) {
+var calcKiss = rcCommand => {
     var a = Math.pow(rcCommand, 3) * rates.kissRcCurve + (1 - rates.kissRcCurve) * rcCommand
     return (200 * rates.kissRcRate * a) / (1 - rates.kissRate * rcCommand);
 }
 
-var calcBf = function (rcCommand) {
+var calcBf = rcCommand => {
     var rcRate = rates.bfRcRate
     if (rcRate > 2.0) {
         rcRate = rcRate + (14.54 * (rcRate - 2.0));
@@ -26,18 +26,14 @@ var calcBf = function (rcCommand) {
     return 200 * rcRate * a / (1 - rates.bfSuperRate * a)
 }
 
-var calcRf = function (rcCommand) {
+var calcRf = rcCommand => {
     var returnValue = ((1 + 0.01 * rates.rfExpo * (rcCommand * rcCommand - 1.0)) * rcCommand)
     returnValue = (returnValue * (rates.rfRate + (Math.abs(returnValue) * rates.rfRate * rates.rfAcro * 0.01)))
     return returnValue
 }
 
-google.charts.load('current', {'packages': ['corechart']});
 
-google.charts.setOnLoadCallback(drawChart);
-
-
-function drawChart() {
+var drawChart = () => {
     var chart = new google.visualization.LineChart(document.getElementById('curve_chart'))
     var data = new google.visualization.DataTable();
 
@@ -59,8 +55,11 @@ function drawChart() {
     chart.draw(data, options);
 }
 
+var convertFrom = (rate) => {
+    alert("Not yet supported converting from " + rate)
+}
 
-var changeValues = function (rateParams) {
+var changeValues = (rateParams) => {
     rateParams.forEach(rateParam => {
         var input = document.getElementById(rateParam)
         input.value = rates[rateParam]
@@ -68,8 +67,8 @@ var changeValues = function (rateParams) {
     })
 }
 
-var setupBinding = function (ids) {
-    var copyThenDraw = function (from, to, inputId) {
+var setupBinding = (ids) => {
+    var copyThenDraw = (from, to, inputId) => {
         return () => {
             to.value = from.value
             rates[inputId] = parseFloat(from.value, 10)
@@ -85,21 +84,16 @@ var setupBinding = function (ids) {
 
     })
 
-
-    var onConvert = function (btn, rate) {
-        btn.onclick = () => alert("Convert from " + rate)
-    }
-
     var convBf = document.getElementById("convBf");
     var convKiss = document.getElementById("convKiss");
     var convRf = document.getElementById("convRf");
-    onConvert(convBf, "bf")
-    onConvert(convKiss, "ki")
-    onConvert(convRf, "rf")
+    convBf.onclick = () => convertFrom("bf")
+    convKiss.onclick = () => convertFrom("ki")
+    convRf.onclick = () => convertFrom("rf")
+
 }
 
-function init() {
-
+var init = () => {
     var ids = ['bfRcRate',
         , 'bfRcRate',
         , 'bfSuperRate',
@@ -114,5 +108,8 @@ function init() {
         , 'rfAcro']
     setupBinding(ids);
 }
+
+google.charts.load('current', {'packages': ['corechart']});
+google.charts.setOnLoadCallback(drawChart);
 
 document.addEventListener("DOMContentLoaded", init);
