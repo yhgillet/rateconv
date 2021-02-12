@@ -55,8 +55,17 @@ var drawChart = () => {
     chart.draw(data, options);
 }
 
-var convertFrom = (rate) => {
-    alert("Not yet supported converting from " + rate)
+var convertFrom = (rate, param1, param2, param3) => {
+    var url = 'https://44r0mjinz8.execute-api.us-east-2.amazonaws.com/Prod/rateconv'
+    $.getJSON(url, {
+            type: rate,
+            p1: rates[param1],
+            p2: rates[param2],
+            p3: rates[param3],
+        }, function (data) {
+            alert("Result " + data)
+        }
+    )
 }
 
 var changeValues = (rateParams) => {
@@ -87,9 +96,9 @@ var setupBinding = (ids) => {
     var convBf = document.getElementById("convBf");
     var convKiss = document.getElementById("convKiss");
     var convRf = document.getElementById("convRf");
-    convBf.onclick = () => convertFrom("bf")
-    convKiss.onclick = () => convertFrom("ki")
-    convRf.onclick = () => convertFrom("rf")
+    convBf.onclick = () => convertFrom("BF", "bfRcRate", "bfSuperRate", "bfExpo")
+    convKiss.onclick = () => convertFrom("KISS", "kissRcRate", "kissRate", "kissRcCurve")
+    convRf.onclick = () => convertFrom("RF", "rfRate", "rfExpo", "rfAcro")
 
 }
 

@@ -14,6 +14,7 @@ import org.cocosoft.rateconv.rate.BFRate;
 import org.cocosoft.rateconv.rate.KissRate;
 import org.cocosoft.rateconv.rate.RaceFlightRate;
 import org.cocosoft.rateconv.rate.Rate;
+import org.cocosoft.rateconv.rate.Rate.Type;
 import org.cocosoft.rateconv.rate.fitter.RateFitter;
 import org.cocosoft.rateconv.rate.fitter.RateResult;
 import org.slf4j.Logger;
@@ -43,16 +44,17 @@ public class RateConvertResource {
     RaceFlightRate destRF = new RaceFlightRate(100, 50, 100);
 
     List<RateResult> results = null;
-    switch (type) {
-      case "bf": {
+    Type from = Type.valueOf(type);
+    switch (from) {
+      case BF: {
         results = convert(new BFRate(param1, param2, param3), destKiss, destRF);
         break;
       }
-      case "ki": {
+      case KISS: {
         results = convert(new KissRate(param1, param2, param3), destBf, destRF);
         break;
       }
-      case "rf": {
+      case RF: {
         results = convert(new RaceFlightRate(param1, param2, param3), destBf, destKiss);
         break;
       }
