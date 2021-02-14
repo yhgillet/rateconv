@@ -4,10 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.WebApplicationException;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.cocosoft.rateconv.rate.BFRate;
@@ -26,7 +24,6 @@ public class RateConvertResource {
   private Logger logger = LoggerFactory.getLogger(RateConvertResource.class);
 
   @GET
-  @Produces(MediaType.APPLICATION_JSON)
   public List<RateResult> convert(@QueryParam("type") String type, @QueryParam("p1") double param1, @QueryParam("p2") double param2, @QueryParam("p3") double param3) {
 
     logger.info("Convert for {} {} {} {}", type, param1, param2, param3);
@@ -43,7 +40,7 @@ public class RateConvertResource {
     BFRate destBf = new BFRate(1, 0.2, 0.1);
     RaceFlightRate destRF = new RaceFlightRate(100, 50, 100);
 
-    List<RateResult> results = null;
+    List<RateResult> results;
     Type from = Type.valueOf(type);
     switch (from) {
       case BF: {
@@ -65,7 +62,7 @@ public class RateConvertResource {
     logger.info("End convert");
     return results;
   }
-
+  
   private List<RateResult> convert(Rate originRate, Rate... destRates) {
     List<RateResult> results = new ArrayList<>(3);
     RateFitter fitter = new RateFitter();
