@@ -11,10 +11,10 @@ This tool was highly inspired by https://github.com/apocolipse/RotorPirates (tha
 Use the online tool and if the conversion doesnt work, you can still use it as a routine, you will need java installed
 for that.
 
-Download the released jar `rateconv-<VERSION>.jar` then run
+Download the released jar `rateconv-0.1.jar` then run
 
 ```
-java -jar rateconv-<VERSION>.jar <type> <param1> <param2> <param3>
+java -jar rateconv-0.1.jar <type> <param1> <param2> <param3>
 
 Where: <type> in [bf,ki,rf] and <paramX> are the rate parameters
 bf: <rc_rate> <super_rate> <rc_expo>
@@ -28,7 +28,7 @@ rf: <rate> <expo> <acro_plus>
 
 Run `./mvnw quarkus:dev`
 
-Open browser to http://localhost:8080/
+Open browser to http://localhost:8080/?dev=true
 
 You can use the quarkus dev console here http://localhost:8080/q/dev/
 

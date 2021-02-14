@@ -5,8 +5,8 @@ name: Github Actions CI
 
 on:
   push:
-    branches: [ test_deploy ]
-    # tags: [ v1* ]
+    tags:
+      - v*
 
 jobs:
   build:
@@ -26,7 +26,6 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          # aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
           aws-region: us-east-2
       - name: Deploy
         shell: bash
