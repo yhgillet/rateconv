@@ -5,7 +5,8 @@ name: Github Actions CI
 
 on:
   push:
-    tags: [ v* ]
+    tags:
+      - v*
 
 jobs:
   build:
