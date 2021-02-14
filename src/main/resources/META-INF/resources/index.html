@@ -1,243 +1,83 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>rateconv - 1.0.0-SNAPSHOT</title>
-    <style>
-        h1, h2, h3, h4, h5, h6 {
-            margin-bottom: 0.5rem;
-            font-weight: 400;
-            line-height: 1.5;
-        }
+    <title>Rate converter</title>
+    <link rel="stylesheet" href="style.css">
 
-        h1 {
-            font-size: 2.5rem;
-        }
-
-        h2 {
-            font-size: 2rem
-        }
-
-        h3 {
-            font-size: 1.75rem
-        }
-
-        h4 {
-            font-size: 1.5rem
-        }
-
-        h5 {
-            font-size: 1.25rem
-        }
-
-        h6 {
-            font-size: 1rem
-        }
-
-        .lead {
-            font-weight: 300;
-            font-size: 2rem;
-        }
-
-        .banner {
-            font-size: 2.7rem;
-            margin: 0;
-            padding: 2rem 1rem;
-            background-color: #0d1c2c;
-            color: white;
-        }
-
-        body {
-            margin: 0;
-            font-family: -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-        }
-
-        code {
-            font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-            font-size: 87.5%;
-            color: #e83e8c;
-            word-break: break-word;
-        }
-
-        .left-column {
-            padding: .75rem;
-            max-width: 75%;
-            min-width: 55%;
-        }
-
-        .right-column {
-            padding: .75rem;
-            max-width: 25%;
-        }
-
-        .container {
-            display: flex;
-            width: 100%;
-        }
-
-        li {
-            margin: 0.75rem;
-        }
-
-        .right-section {
-            margin-left: 1rem;
-            padding-left: 0.5rem;
-        }
-
-        .right-section h3 {
-            padding-top: 0;
-            font-weight: 200;
-        }
-
-        .right-section ul {
-            border-left: 0.3rem solid #71aeef;
-            list-style-type: none;
-            padding-left: 0;
-        }
-
-        .examples {
-            display: flex;
-            flex-wrap: wrap;
-            margin: 20px 0 20px -40px;
-        }
-
-        .example {
-            display: flex;
-            margin-left: 20px;
-            margin-bottom: 20px;
-            flex-direction: column;
-            width: 350px;
-            background-color: #205894;
-            color: white;
-        }
-
-        .example code {
-            color: lightgrey;
-        }
-
-        .example-header {
-            padding: 20px;
-            display: flex;
-            position: relative;
-        }
-
-        .example-header h4 {
-            margin: 0;
-            font-size: 1.4rem;
-            flex-grow: 1;
-            line-height: 1.5;
-        }
-
-        .example-description {
-            padding: 0 20px;
-            flex-grow: 1;
-        }
-
-        .example-paths {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .example-paths a {
-            display: block;
-            background-color: transparent;
-            font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-            color: white;
-            padding: 10px;
-            text-decoration: none;
-        }
-
-        .example-paths a:before {
-            content: '⇨';
-            font-weight: bold;
-            font-size: 1.5rem;
-            margin: 20px;
-        }
-
-        .example-paths a:hover {
-            background-color: #0d1c2c;
-        }
-
-        .guide-link {
-            background-color: #71aeef;
-            position: absolute;
-            color: white;
-            text-decoration: none;
-            top: 0;
-            right: 0;
-            padding: 7px;
-            font-weight: bold;
-        }
-
-        .guide-link:hover {
-            background-color: #0d1c2c;
-        }
-    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="rates.js"></script>
 </head>
 <body>
-
-<div class="banner lead">
-    Your new Cloud-Native application is ready!
+<div style="max-width:900px; display:inline-block; vertical-align: top">
+    <div id="curve_chart" style="width: 900px; height: 500px;"></div>
 </div>
 
-<div class="container">
-    <div class="left-column">
-        <p class="lead"> Congratulations, you have created a new Quarkus cloud application.</p>
-
-        <h2>Why do you see this?</h2>
-
-        <p>This page is served by Quarkus. The source is in
-            <code>src/main/resources/META-INF/resources/index.html</code>.</p>
-
-        <h2>What can I do from here?</h2>
-
-        <p>If not already done, run the application in <em>dev mode</em> using: <code>./mvnw compile quarkus:dev</code>.
-        </p>
-        <ul>
-            <li>Play with your example code in <code>src/main/java</code>:
-                <div class="examples">
-                    <div class="example">
-                        <div class="example-header">
-                            <h4>RateConverter</h4>
-                            <a class="guide-link" href="https://quarkus.io/guides/rest-json" target="_blank">Guide</a>
-                        </div>
-                        <div class="example-description">
-                            <p>A Rate converter resource</p>
-
-                        </div>
-                        <div class="example-paths">
-                            <a class="path-link" href="/rateconv?type=bf&p1=2.1&p2=0.3&p3=0.9" target="_blank">GET
-                                /rateconv?type=bf&p1=2.1&p2=0.3&p3=0.9</a>
-                        </div>
-                    </div>
-
-                </div>
-            </li>
-            <li>Your static assets are located in <code>src/main/resources/META-INF/resources</code>.</li>
-            <li>Configure your application in <code>src/main/resources/application.properties</code>.</li>
-        </ul>
-        <h2>Do you like Quarkus?</h2>
-        <p>Go give it a star on <a href="https://github.com/quarkusio/quarkus">GitHub</a>.</p>
-    </div>
-    <div class="right-column">
-        <div class="right-section">
-            <h3>Application</h3>
-            <ul>
-                <li>GroupId: org.cocosoft</li>
-                <li>ArtifactId: rateconv</li>
-                <li>Version: 1.0.0-SNAPSHOT</li>
-                <li>Quarkus Version: 1.11.2.Final</li>
-            </ul>
+<div style="margin-left: 200px">
+    <div>
+        <h3>Kiss</h3>
+        <div>
+            <span class="input-title">RC Rate</span>
+            <span class="input-title">Rate</span>
+            <span class="input-title">RC Curve</span>
+            <span class="input-title"></span>
         </div>
-        <div class="right-section">
-            <h3>Next steps</h3>
-            <ul>
-                <li><a href="https://quarkus.io/guides/maven-tooling.html" target="_blank">Setup your IDE</a></li>
-                <li><a href="https://quarkus.io/guides/getting-started.html" target="_blank">Getting started</a></li>
-                <li><a href="https://quarkus.io" target="_blank">Quarkus Web Site</a></li>
-            </ul>
+        <div>
+            <input type="number" id="kissRcRate" step="0.01" min="0.00" max="10" value="0.7" class="input-field">
+            <input type="number" id="kissRate" step="0.01" min="0.00" max="1" value="0.7" class=" input-field">
+            <input type="number" id="kissRcCurve" step="0.01" min="0.00" max="1.00" value="0.4" class=" input-field">
+            <button class="convert" data-rate="KISS">Convert</button>
+        </div>
+        <div>
+            <input type="range" id="kissRcRateSlider" class="slider" step="0.01" min="0.00" max="10" value="0.7">
+            <input type="range" id="kissRateSlider" class="slider" step="0.01" min="0.00" max="1" value="0.7">
+            <input type="range" id="kissRcCurveSlider" class="slider" step="0.01" min="0.00" max="1.00" value="0.4">
+            <span class="input-title"></span>
+        </div>
+    </div>
+    <div>
+        <h3>BetaFlight</h3>
+        <div>
+            <span class="input-title">RC Rate</span>
+            <span class="input-title">Super Rate</span>
+            <span class="input-title">RC Expo</span>
+            <span class="input-title"></span>
+        </div>
+        <div>
+            <input type="number" id="bfRcRate" step="0.01" min="0.00" max="3" value="1" class="input-field">
+            <input type="number" id="bfSuperRate" step="0.01" min="0.00" max="1" value="0.7" class="input-field">
+            <input type="number" id="bfExpo" step="0.01" min="0.00" max="1.00" value="0" class="input-field">
+            <button class="convert" data-rate="BF">Convert</button>
+        </div>
+        <div>
+            <input type="range" id="bfRcRateSlider" class="slider" step="0.01" min="0.00" max="3" value="1">
+            <input type="range" id="bfSuperRateSlider" class="slider" step="0.01" min="0.00" max="1" value="0.7">
+            <input type="range" id="bfExpoSlider" class="slider" step="0.01" min="0.00" max="1.00" value="0">
+            <span class="input-title"></span>
+        </div>
+    </div>
+    <div>
+        <h3>RaceFlight</h3>
+        <div>
+            <span class="input-title">Rate</span>
+            <span class="input-title">Expo</span>
+            <span class="input-title">Acro+</span>
+            <span class="input-title"></span>
+        </div>
+        <div>
+            <input type="number" id="rfRate" step="1" min="0.00" max="2000" value="400" class="input-field">
+            <input type="number" id="rfExpo" step="1" min="0.00" max="100" value="50" class="input-field">
+            <input type="number" id="rfAcro" step="1" min="0.00" max="1000" value="140" class="input-field">
+            <button class="convert" data-rate="RF">Convert</button>
+        </div>
+        <div>
+            <input type="range" id="rfRateSlider" class="slider" step="1" min="0.00" max="2000" value="400">
+            <input type="range" id="rfExpoSlider" class="slider" step="1" min="0.00" max="100" value="50">
+            <input type="range" id="rfAcroSlider" class="slider" step="1" min="0.00" max="1000" value="140">
+            <span class="input-title"></span>
         </div>
     </div>
 </div>
+
 </body>
 </html>

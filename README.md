@@ -2,7 +2,7 @@
 
 Convert typical flight contollers rates. Supports RaceFlight, BetaFlight, and KISS conversions.
 
-Chek it here ! https://yhgillet.github.io/rateconv/
+Test it [here](https://yhgillet.github.io/rateconv/src/main/resources/META-INF/resources/index.html)
 
 This tool was highly inspired by https://github.com/apocolipse/RotorPirates (thanks !)
 
