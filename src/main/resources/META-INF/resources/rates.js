@@ -25,10 +25,10 @@ var inputIds = [
     'rfAcro']
 
 
-var apiUrl = 'https://44r0mjinz8.execute-api.us-east-2.amazonaws.com/Prod/rateconv'
+var apiUrl = 'https://44r0mjinz8.execute-api.us-east-2.amazonaws.com/Prod/convert'
 
 if (new URL(window.location.href).searchParams.get("dev")) {
-    apiUrl = "http://localhost:8080/rateconv"
+    apiUrl = "http://localhost:8080/convert"
 }
 
 var calcKiss = rcCommand => {
@@ -84,34 +84,35 @@ var refreshRates = () => {
 var convertFrom = (rate) => {
 
     var data = {
-        type: rate
+        from: rate
     }
     switch (rate) {
         case "KISS": {
-            data.p1 = rates.kissRcRate
-            data.p2 = rates.kissRate
-            data.p3 = rates.kissRcCurve
+            data.rateParam1 = rates.kissRcRate
+            data.rateParam2 = rates.kissRate
+            data.rateParam3 = rates.kissRcCurve
             break
         }
         case "BF": {
-            data.p1 = rates.bfRcRate
-            data.p2 = rates.bfSuperRate
-            data.p3 = rates.bfExpo
+            data.rateParam1 = rates.bfRcRate
+            data.rateParam2 = rates.bfSuperRate
+            data.rateParam3 = rates.bfExpo
             break
         }
         case "RF": {
-            data.p1 = rates.rfRate
-            data.p2 = rates.rfExpo
-            data.p3 = rates.rfRate
+            data.rateParam1 = rates.rfRate
+            data.rateParam2 = rates.rfExpo
+            data.rateParam3 = rates.rfRate
             break
         }
     }
     $.ajax({
         dataType: "json",
-        type: 'GET',
+        type: 'POST',
+        contentType: 'application/json',
         url: apiUrl,
         crossDomain: true,
-        data: data,
+        data: JSON.stringify(data),
         success: function (data) {
             handleConvertResult(data)
         }
@@ -119,9 +120,12 @@ var convertFrom = (rate) => {
 
 }
 
-var handleConvertResult = (results) => {
-    results.forEach(data => {
-        var result = data.rate
+var handleConvertResult = (response) => {
+    if (response.validationErrors) {
+        alert(JSON.stringify(response.validationErrors))
+        return;
+    }
+    response.result.forEach(result => {
         switch (result.type) {
             case "KISS": {
                 rates.kissRate = Number(result.rate).toFixed(2)
