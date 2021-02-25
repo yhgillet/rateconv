@@ -6,7 +6,11 @@ Globals:
     EndpointConfiguration: REGIONAL
     BinaryMediaTypes:
       - "*/*"
-
+    Cors:
+      AllowMethods: "'GET,POST,OPTIONS'"
+      AllowHeaders: "'accept,origin,authorization,content-type,x-requested-with'"
+      AllowOrigin: "'https://yhgillet.github.io'"
+      AllowCredentials: "'*'"
 Resources:
   RateconvNative:
     Type: AWS::Serverless::Function
