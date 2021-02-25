@@ -25,7 +25,7 @@ var inputIds = [
     'rfAcro']
 
 
-var apiUrl = 'https://44r0mjinz8.execute-api.us-east-2.amazonaws.com/Prod/convert'
+var apiUrl = 'https://1mo0hqggf4.execute-api.us-east-2.amazonaws.com/Prod/convert'
 
 if (new URL(window.location.href).searchParams.get("dev")) {
     apiUrl = "http://localhost:8080/convert"
