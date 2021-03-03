@@ -17,8 +17,8 @@
         <compiler-plugin.version>3.8.1</compiler-plugin.version>
         <surefire-plugin.version>3.0.0-M5</surefire-plugin.version>
         <junit.version>5.7.0</junit.version>
-        <quarkus-plugin.version>1.11.3.Final</quarkus-plugin.version>
-        <quarkus.platform.version>1.11.3.Final</quarkus.platform.version>
+        <quarkus-plugin.version>1.12.1.Final</quarkus-plugin.version>
+        <quarkus.platform.version>1.12.1.Final</quarkus.platform.version>
         <commons-math3.version>3.6.1</commons-math3.version>
     </properties>
 
