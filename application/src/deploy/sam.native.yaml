@@ -8,8 +8,9 @@ Globals:
       - "*/*"
     Cors:
       AllowMethods: "'GET,POST,OPTIONS'"
-      AllowHeaders: "'accept,origin,authorization,content-type,x-requested-with'"
-      AllowOrigin: "'https://yhgillet.github.io'"
+      #AllowHeaders: "'accept,origin,authorization,content-type,x-requested-with'"
+      AllowHeaders: "'*'"
+      AllowOrigin: "'https://yhgillet.github.io,http://localhost:8080'"
       AllowCredentials: "'*'"
 Resources:
   RateconvNative:

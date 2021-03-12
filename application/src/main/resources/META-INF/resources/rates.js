@@ -1,4 +1,13 @@
-var rates = {
+let environmentUrl = {
+    prod: "https://1mo0hqggf4.execute-api.us-east-2.amazonaws.com/Prod/convert",
+    dev: "http://localhost:8080/convert",
+    dev_native: "http://localhost:3000/convert"
+}
+
+let env = new URL(window.location.href).searchParams.get("env") || 'prod'
+let apiUrl = environmentUrl[env]
+
+let rates = {
     kissRcRate: 0.7,
     kissRate: 0.7,
     kissRcCurve: 0.4,
@@ -12,7 +21,7 @@ var rates = {
     rfAcro: 140,
 }
 
-var inputIds = [
+let inputIds = [
     'kissRcRate',
     'kissRate',
     'kissRcCurve',
@@ -24,12 +33,6 @@ var inputIds = [
     'rfExpo',
     'rfAcro']
 
-
-var apiUrl = 'https://1mo0hqggf4.execute-api.us-east-2.amazonaws.com/Prod/convert'
-
-if (new URL(window.location.href).searchParams.get("dev")) {
-    apiUrl = "http://localhost:8080/convert"
-}
 
 var calcKiss = rcCommand => {
     var a = Math.pow(rcCommand, 3) * rates.kissRcCurve + (1 - rates.kissRcCurve) * rcCommand
